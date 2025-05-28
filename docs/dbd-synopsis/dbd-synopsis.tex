@@ -30,7 +30,7 @@
 %%%%%%%%%%%% Introduction %%%%%%%%%%%
 \section{Introduction}
 
-\paragraph{} In our current project development, my company is designing a middle-tier management system. One of its core requirements is to build a comprehensive \textbf{audit log module} to record user operational behavior and device status changes. Given the existence of multiple user roles (e.g., administrators, maintenance personnel, general users) and various types of devices within the system, the fields required for each audit log entry significantly vary in structure.
+\paragraph{} In our current project development, my company is designing a middle-tier management system. One of its core requirements is to build a comprehensive \textbf{Audit Log Module} to record user operational behavior and device status changes. Given the existence of multiple user roles (e.g., administrators, maintenance personnel, general users) and various types of devices within the system, the fields required for each audit log entry significantly vary in structure.
 
 \paragraph{} Under traditional relational database modeling, adapting to different user behaviors and device interaction patterns often necessitates designing multiple data tables and complex entity relationship structures. This approach not only leads to a bloated data model and increased redundant fields but also introduces significant performance overhead during both write and query phases. Especially in an audit log system, \textbf{high-frequency read-write operations} are standard: users need to retrieve logs instantly after logging in, and every device operation must be recorded in real-time. This subjects the database to high concurrent read-write pressure, leading to high I/O bandwidth usage and slower system response times.
 
