@@ -1,20 +1,18 @@
-// src/main.ts
 import { NestFactory } from '@nestjs/core';
+import { AuditLogModule } from './audit-log.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { UserModule } from './user.module';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    UserModule,
+    AuditLogModule,
     {
       transport: Transport.TCP,
       options: {
-        host: '127.0.0.1', // 微服务监听的地址
-        port: 8080, // 微服务监听的端口
-      },
-    },
+        host: 'localhost',
+        port: 8081,
+      }
+    }
   );
   await app.listen();
-  console.log('User Microservice is listening on port 3001');
 }
 bootstrap();
