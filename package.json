@@ -20,12 +20,22 @@
     "test:e2e": "jest --config ./apps/easv.pbsw.dbd-sys.synopsis/test/jest-e2e.json"
   },
   "dependencies": {
+    "@nestjs/cache-manager": "^3.0.1",
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/microservices": "^11.1.2",
+    "@nestjs/mongoose": "^11.0.3",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/swagger": "^11.2.0",
+    "@nestjs/typeorm": "^11.0.0",
+    "cache-manager": "^6.4.3",
+    "cache-manager-redis-store": "^3.0.1",
+    "ioredis": "^5.6.1",
+    "mongoose": "^8.15.1",
+    "pg": "^8.16.0",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

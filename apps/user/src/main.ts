@@ -10,7 +10,7 @@ async function bootstrap() {
       transport: Transport.TCP,
       options: {
         host: '127.0.0.1', // 微服务监听的地址
-        port: 8080, // 微服务监听的端口
+        port: 3002, // 微服务监听的端口
       },
     },
   );

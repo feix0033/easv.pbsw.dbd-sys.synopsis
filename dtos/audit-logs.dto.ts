@@ -1,18 +1,18 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 
-export class CreateMongoLogsDto {
+export class CreateMongoAuditLogsDto {
   readonly userId: string;
   readonly action: string;
   readonly deviceId: string;
   readonly metadata: Record<string, any>;
 }
 
-export class CreatePostgresLogsDto {
+export class CreatePostgresAuditLogsDto {
   readonly userId: string;
   readonly data: string;
 }
 
-export class QueryMongoLogsDto {
+export class QueryMongoAuditLogsDto {
   @ApiPropertyOptional()
   userId?: string;
 
@@ -26,7 +26,7 @@ export class QueryMongoLogsDto {
   metadata?: Record<string, any>;
 }
 
-export class QueryPostgresLogsDto {
+export class QueryPostgresAuditLogsDto {
   @ApiPropertyOptional()
   userId?: string;
 

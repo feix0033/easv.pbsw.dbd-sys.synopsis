@@ -7,19 +7,19 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
   imports: [
     ClientsModule.register([
       {
-        name: 'USER_SERVICE', // 客户端名称，用于注入
-        transport: Transport.TCP,
-        options: {
-          host: '127.0.0.1',
-          port: 8080, // 连接到用户服务的端口
-        },
-      },
-      {
         name: 'AUDIT_LOG',
         transport: Transport.TCP,
         options: {
           host: 'localhost',
-          port: 8081,
+          port: 3001,
+        },
+      },
+      {
+        name: 'USER_SERVICE', // 客户端名称，用于注入
+        transport: Transport.TCP,
+        options: {
+          host: '127.0.0.1',
+          port: 3002, // 连接到用户服务的端口
         },
       },
     ]),

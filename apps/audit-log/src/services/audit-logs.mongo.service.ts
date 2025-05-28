@@ -2,18 +2,18 @@ import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Injectable, Inject } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CacheLogger } from 'util/cache-logger';
-import { Logs, LogsSchema } from '../schemas/logs.schema';
-import { ILogsService } from '../interfaces/logs.interface';
+import { CacheLogger } from '../cache/cache-logger';
+import { AuditLogs } from '../schemas/audit-logs.schema';
+import { IAuditLogsService } from '../interfaces/audit-logs.interface';
 import { Cache } from 'cache-manager';
 
 const cacheLogger = new CacheLogger();
 
 @Injectable()
-export class LogsMongoService implements ILogsService {
+export class AuditLogsMongoService implements IAuditLogsService {
   constructor(
     // DI mongoDB model
-    @InjectModel(Logs.name) private logsModel: Model<Logs>,
+    @InjectModel(AuditLogs.name) private logsModel: Model<AuditLogs>,
     // DI cache manager: redis
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}

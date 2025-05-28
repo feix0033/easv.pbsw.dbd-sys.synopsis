@@ -1,0 +1,51 @@
+services:
+  # api-gateway:
+  #   build:
+  #     context: ./apps/api-gateway
+  #   ports:
+  #     - "3001:3001"
+  #   depends_on:
+  #     - audit-log
+  #     - postgres
+  #     - mongo
+  #   environment:
+  #     MONGO_SERVICE_HOST: audit-log
+  #     MONGO_SERVICE_PORT: 3002
+
+  # audit-log:
+  #   build:
+  #     context: ./apps/audit-log
+  #   ports:
+  #     - "3002:3002" # 仅用于调试
+
+  postgres: # 新增 PostgreSQL 服务
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres # 管理员用户名
+      POSTGRES_PASSWORD: postgres # 管理员密码（生产环境请使用强密码）
+      POSTGRES_DB: audit_logs # 默认创建的数据库
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data # 持久化数据
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d audit_logs']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+
+  redis:
+    image: redis:7
+    ports:
+      - '6379:6379'
+
+volumes:
+  mongo-data:
+  postgres-data:

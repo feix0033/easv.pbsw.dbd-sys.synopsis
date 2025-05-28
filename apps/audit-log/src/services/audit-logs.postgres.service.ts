@@ -1,22 +1,22 @@
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Injectable, Inject } from '@nestjs/common';
 import { Cache } from 'cache-manager';
-import { CacheLogger } from '../../../util/cache-logger';
+import { CacheLogger } from '../cache/cache-logger'
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ILogsService } from '../interfaces/logs.interface';
-import { CreatePostgresLogsDto } from '../dto/logs.dto';
+import { IAuditLogsService } from '../interfaces/audit-logs.interface';
+import { CreatePostgresAuditLogsDto } from '../../../../dtos/audit-logs.dto';
 import { Builder } from 'xml2js';
-import { LogsEntity } from '../entities/logs.entity';
+import { AuditLogsEntity } from '../entities/audit-logs.entity';
 
 const cacheLogger = new CacheLogger();
 
 @Injectable()
-export class LogsProstgresService implements ILogsService {
+export class AuditLogsProstgresService implements IAuditLogsService {
   constructor(
     // DI postgreSQL repository
-    @InjectRepository(LogsEntity)
-    private logsRepository: Repository<LogsEntity>,
+    @InjectRepository(AuditLogsEntity)
+    private logsRepository: Repository<AuditLogsEntity>,
     // DI cache manager: redis
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
@@ -42,11 +42,11 @@ export class LogsProstgresService implements ILogsService {
     return result;
   }
 
-  async create(data: CreatePostgresLogsDto): Promise<LogsEntity> {
+  async create(data: CreatePostgresAuditLogsDto): Promise<AuditLogsEntity> {
     console.time(`Create ${data}`);
     const builder = new Builder();
     const xmlData = builder.buildObject(data || {});
-    const logs = new LogsEntity();
+    const logs = new AuditLogsEntity();
     logs.data = xmlData;
 
     const result = await this.logsRepository.save(logs);

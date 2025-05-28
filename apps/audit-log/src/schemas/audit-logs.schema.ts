@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 @Schema({ timestamps: true })
-export class Logs extends Document {
+export class AuditLogs extends Document {
   @Prop({ type: String })
   userId: string;
 
@@ -16,4 +16,4 @@ export class Logs extends Document {
   metadata: Record<string, any>; // 半结构化字段
 }
 
-export const LogsSchema = SchemaFactory.createForClass(Logs);
+export const AuditLogsSchema = SchemaFactory.createForClass(AuditLogs);
