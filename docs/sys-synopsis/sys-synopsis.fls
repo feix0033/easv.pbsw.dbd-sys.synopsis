@@ -1,8 +1,8 @@
-PWD /Users/fei/feix0033@github.com/easv/easv.pbsw.dbd+sys.synopsis/docs
+PWD /Users/fei/feix0033@github.com/easv/easv.pbsw.dbd+sys.synopsis/docs/sys-synopsis
 INPUT /usr/local/texlive/2025/texmf.cnf
 INPUT /usr/local/texlive/2025/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/fei/feix0033@github.com/easv/easv.pbsw.dbd+sys.synopsis/docs/sys-synopsis.tex
+INPUT /Users/fei/feix0033@github.com/easv/easv.pbsw.dbd+sys.synopsis/docs/sys-synopsis/sys-synopsis.tex
 OUTPUT sys-synopsis.log
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls
