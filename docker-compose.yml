@@ -1,22 +1,48 @@
 services:
-  # api-gateway:
+  # audit-log-service:
   #   build:
-  #     context: ./apps/api-gateway
+  #     context: .
+  #     dockerfile: apps/audit-log/Dockerfile
   #   ports:
-  #     - "3001:3001"
+  #     - '3001:3001'
   #   depends_on:
-  #     - audit-log
   #     - postgres
+  #     - redis
   #     - mongo
   #   environment:
-  #     MONGO_SERVICE_HOST: audit-log
-  #     MONGO_SERVICE_PORT: 3002
+  #     DATABASE_HOST: postgres # This is the key change!
+  #     DATABASE_USERNAME: postgres
+  #     DATABASE_PASSWORD: postgres
+  #     DATABASE_NAME: audit_logs
+  #     MONGO_URI: mongodb://mongo:27017/logs
+  #   restart: always
 
-  # audit-log:
+  # user-service:
   #   build:
-  #     context: ./apps/audit-log
+  #     context: . # 构建上下文是当前目录（monorepo 根目录）
+  #     dockerfile: apps/user/Dockerfile # 指定使用哪个 Dockerfile
   #   ports:
-  #     - "3002:3002" # 仅用于调试
+  #     - '3002:3002'
+  #   depends_on:
+  #     - postgres
+  #     - redis
+  #     - mongo
+  #   restart: always
+
+  api-gateway:
+    image: krakend:latest
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./krakend.json:/etc/krakend/krakend.json
+    command: ['run', '-c', '/etc/krakend/krakend.json']
+    depends_on:
+      # - audit-log-service
+      # - user-service
+      - postgres
+      - mongo
+      - redis
+    restart: always # 可选：如果希望容器在退出时自动重启
 
   postgres: # 新增 PostgreSQL 服务
     image: postgres:15-alpine

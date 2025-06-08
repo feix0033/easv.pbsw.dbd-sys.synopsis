@@ -19,6 +19,6 @@ COPY --from=build /app/package.json ./
 
 RUN npm install
 
-EXPOSE 3001
+EXPOSE 3002
 
-CMD [ "node", "./dist/apps/audit-log/main.js" ]
+CMD [ "node", "./dist/apps/user/main.js" ]

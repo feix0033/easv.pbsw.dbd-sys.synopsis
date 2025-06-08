@@ -39,4 +39,11 @@ export class AuditLogsController {
   async findPostgres(@Query() query: QueryPostgresAuditLogsDto) {
     return await this.logsPostgresService.findByQuery(query);
   }
+
+  @Get('/hello')
+  getHello(){
+    console.log('fetch request');
+    
+    return 'hello audit-log'
+  }
 }
